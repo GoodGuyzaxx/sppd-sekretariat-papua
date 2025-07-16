@@ -9,7 +9,7 @@ use Illuminate\Validation\ValidationException;
 class AuthController extends Controller
 {
     public function login(Request $request){
-        return view('auth.login');
+        return view('pages.auth.login');
     }
 
     public function authenticate(Request $request){

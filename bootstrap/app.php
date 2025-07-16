@@ -6,6 +6,7 @@ use App\Http\Middleware\CheckRole;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
+use Illuminate\Validation\UnauthorizedException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 return Application::configure(basePath: dirname(__DIR__))
@@ -23,6 +24,11 @@ return Application::configure(basePath: dirname(__DIR__))
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         $exceptions->render(function (NotFoundHttpException $e, $request) {
+            if (!$request->is('api/*')) {
+                return redirect('/');
+            }
+        });
+        $exceptions->render(function (UnauthorizedException $e, $request) {
             if (!$request->is('api/*')) {
                 return redirect('/');
             }

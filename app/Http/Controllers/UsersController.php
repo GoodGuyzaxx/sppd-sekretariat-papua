@@ -19,7 +19,7 @@ class UsersController extends Controller
 //        $users = User::join('roles', 'roles.id', '=', 'users.role_id')
 //            ->select('users.*', 'roles.name as role_name')
 //            ->get();
-        return view('admin.akun.index', compact('users'));
+        return view('pages.admin.akun.index', compact('users'));
     }
 
     /**
@@ -28,7 +28,7 @@ class UsersController extends Controller
     public function create()
     {
         $roles = Role::all();
-        return view('admin.akun.create', compact('roles'));
+        return view('pages.admin.akun.create', compact('roles'));
     }
 
     /**
@@ -69,7 +69,7 @@ class UsersController extends Controller
         $user = User::findOrFail($id);
         $roles = Role::all();
 
-        return view('admin.akun.edit', compact('user', 'roles'));
+        return view('pages.admin.akun.edit', compact('user', 'roles'));
     }
 
     /**
@@ -78,12 +78,13 @@ class UsersController extends Controller
     public function update(Request $request, string $id)
     {
         $user = User::findOrFail($id);
-
-        $rules = [
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email,' . $user->id,
-            'role_id' => 'required|exists:roles,id',
-        ];
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email|unique:users',
+            'password' => 'required',
+            // Ubah aturan validasi ini
+            'role_id' => 'required|exists:roles,role_id' // Tambahkan ,role_id
+        ]);
 
         // Validasi password hanya jika diisi
         if ($request->filled('password')) {

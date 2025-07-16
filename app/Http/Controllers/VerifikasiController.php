@@ -2,23 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Sppd;
 use Illuminate\Http\Request;
 
-class StaffController extends Controller
+class VerifikasiController extends Controller
 {
-    public static function middleware(): array
-    {
-        return [
-            'auth',
-            'checkrole:4',
-        ];
-    }
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('pages.staff.index');
+        $data = Sppd::with('pegawai')->get();
+        return view('pages.sekre.sppd', compact('data'));
     }
 
     /**

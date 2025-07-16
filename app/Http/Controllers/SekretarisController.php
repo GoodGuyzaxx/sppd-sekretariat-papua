@@ -11,7 +11,7 @@ class SekretarisController extends Controller
      */
     public function index()
     {
-        return view('sekre.index');
+        return view('pages.sekre.index');
     }
 
     /**

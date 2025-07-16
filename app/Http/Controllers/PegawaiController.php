@@ -13,7 +13,7 @@ class PegawaiController extends Controller
     public function index()
     {
         $pegawais = Pegawai::all();
-        return view('admin.pegawai.index', compact('pegawais'));
+        return view('pages.admin.pegawai.index', compact('pegawais'));
     }
 
     /**
@@ -21,7 +21,7 @@ class PegawaiController extends Controller
      */
     public function create()
     {
-        return view('admin.pegawai.create');
+        return view('pages.admin.pegawai.create');
     }
 
     /**
@@ -62,7 +62,7 @@ class PegawaiController extends Controller
     {
         //
         $pegawai = Pegawai::findOrFail($id);
-        return view('admin.pegawai.edit', compact('pegawai'));
+        return view('pages.admin.pegawai.edit', compact('pegawai'));
     }
 
     /**
@@ -99,6 +99,6 @@ class PegawaiController extends Controller
     {
         $id->delete();
 
-        return redirect('/admin/pegawai')->with('success', 'Data berhasil dihapus');
+        return redirect()->route('admin.pegawai.index')->with('success', 'Data berhasil dihapus');
     }
 }

@@ -12,7 +12,7 @@
             <li class="nav-item dropdown pe-3">
                 <a class="nav-link nav-profile d-flex align-items-center pe-0" data-bs-toggle="dropdown">
                     <img src="{{ asset('NiceAdmin') }}/assets/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-                    <span class="d-none d-md-block ps-2">Staff</span>
+                    <span class="d-none d-md-block ps-2">Admin</span>
                 </a><!-- End Profile Image Icon -->
             </li><!-- End Profile Nav -->
             <form action="/logout" method="post">

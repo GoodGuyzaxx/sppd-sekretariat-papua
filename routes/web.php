@@ -5,10 +5,13 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\KasubagController;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\RedirectController;
+use App\Http\Controllers\RincianController;
 use App\Http\Controllers\SekretarisController;
 use App\Http\Controllers\SppdController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\UsersController;
+use App\Http\Controllers\ValidasiController;
+use App\Http\Controllers\VerifikasiController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -48,12 +51,20 @@ Route::middleware(['auth', 'checkrole:1'])->group(function () {
 Route::middleware(['auth', 'checkrole:2'])->group(function () {
     Route::get('/sekretaris', [SekretarisController::class, 'index'])->name('sekre.dashboard');
     // Add other sekretaris routes here
-    Route::get('/sekretaris/sppd', [SppdController::class, 'index'])->name('sekretaris.sppd.index');
+    Route::get('/sekretaris/sppd', [VerifikasiController::class, 'index'])->name('sekretaris.sppd.index');
+    Route::get('/sekretaris/sppd/tolak/{id}', [VerifikasiController::class, 'tolak'])->name('sekretaris.sppd.tolak');
+    Route::get('/sekretaris/sppd/terima/{id}', [VerifikasiController::class, 'terima'])->name('sekretaris.sppd.terima');
+    Route::get('/sekretaris/sppd/creaters/sppd/show/{id}', [VerifikasiController::class, 'show'])->name('sekretaris.sppd.show');
+    Route::get('/sekretaris/sppd/laporan/pdf/{id}', [VerifikasiController::class, 'getPdf'])->name('sekretaris.laporan.pdf');
 });
 
 Route::middleware(['auth', 'checkrole:3'])->group(function () {
     Route::get('/kasubag', [KasubagController::class, 'index'])->name('kasubag.dashboard');
     // Add other kasubag routes here
+    Route::get('/kasubag/laporan/', [ValidasiController::class, 'index'])->name('kasubag.laporan.index');
+    Route::get('/kasubag/laporan/pdf/{id}', [ValidasiController::class, 'getPdf'])->name('kasubag.laporan.pdf');
+    Route::get('/kasubag/laporan/terima/{id}',[ValidasiController::class, 'terima'])->name('kasubag.laporan.terima');
+    Route::get('/kasubag/laporan/tolak/{id}',[ValidasiController::class, 'tolak'])->name('kasubag.laporan.tolak');
 });
 
 Route::middleware(['auth', 'checkrole:4'])->group(function () {
@@ -68,4 +79,11 @@ Route::middleware(['auth', 'checkrole:4'])->group(function () {
     Route::put('staff/sppd/update/{id}', [SppdController::class, 'update'])->name('staff.sppd.update');
     Route::delete('staff/sppd/delete/{sppd}', [SppdController::class, 'destroy'])->name('staff.sppd.destroy');
     Route::get('/staff/sppd/pdf/{id}', [SppdController::class, 'getSppdPdf'])->name('staff.sppd.pdf');
+
+    Route::get('staff/pengeluaran', [RincianController::class, 'index'])->name("staff.rincian.index");
+    Route::get('staff/pengeluaran/create', [RincianController::class, 'create'])->name('staff.rincian.create');
+    Route::post('staff/pengeluaran/store', [RincianController::class, 'store'])->name('staff.rincian.store');
+    Route::delete('staff/pengeluaran/delete/{id}', [RincianController::class, 'destroy'])->name('staff.rincian.destroy');
+    Route::get('staff/pengeluaran/detail{id}', [RincianController::class, 'show'])->name("staff.rincian.show");
+    Route::get('staff/pengeluaran/pdf/{id}', [RincianController::class, 'getPdf'])->name('staff.rincian.pdf');
 });

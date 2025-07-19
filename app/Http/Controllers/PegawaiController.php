@@ -95,9 +95,9 @@ class PegawaiController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Pegawai $id)
+    public function destroy(Pegawai $id_pegawai)
     {
-        $id->delete();
+        $id_pegawai->delete();
 
         return redirect()->route('admin.pegawai.index')->with('success', 'Data berhasil dihapus');
     }

@@ -1,4 +1,4 @@
-@extends('layouts.kasubag_dashboard')
+@extends('layouts.staff_dashboard')
 
 @section('contents')
     <div class="pagetitle">

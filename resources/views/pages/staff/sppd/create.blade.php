@@ -10,17 +10,14 @@
             </ol>
         </nav>
     </div><!-- End Page Title -->
-
     <section class="section dashboard">
         <div class="row">
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Formulir Tambah Data SPPD</h5>
-
                         <form action="{{ route('staff.sppd.store') }}" method="POST">
                             @csrf
-
                             {{-- DATA UMUM SPPD --}}
                             <div class="row mb-3">
                                 <div class="col-md-4">
@@ -67,7 +64,6 @@
                                     @error('tingkat_perjalanan')<div class="alert alert-danger mt-2">{{ $message }}</div>@enderror
                                 </div>
                             </div>
-
                             {{-- DASAR & MAKSUD PERJALANAN --}}
                             <h5 class="card-title mt-4">Dasar & Maksud Perjalanan</h5>
                             <div class="row mb-3">
@@ -154,13 +150,11 @@
                                 <textarea name="keterangan_lain" class="form-control @error('keterangan_lain') is-invalid @enderror" rows="3" placeholder="Masukkan Keterangan Lain, jika ada">{{ old('keterangan_lain') }}</textarea>
                                 @error('keterangan_lain')<div class="alert alert-danger mt-2">{{ $message }}</div>@enderror
                             </div>
-
                             <div class="text-end">
                                 <button type="submit" class="btn btn-primary">SIMPAN</button>
                                 <button type="reset" class="btn btn-warning">RESET</button>
                                 <a href="{{ route('staff.sppd.index') }}" class="btn btn-secondary">KEMBALI</a>
                             </div>
-
                         </form>
                     </div>
                 </div>

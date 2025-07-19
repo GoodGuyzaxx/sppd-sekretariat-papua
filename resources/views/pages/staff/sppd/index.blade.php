@@ -5,7 +5,7 @@
         <h1>Dashboard</h1>
         <nav>
             <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="{{ url('admin') }}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{{ url('staff') }}">Home</a></li>
                 <li class="breadcrumb-item active">Data SPPD</li>
             </ol>
         </nav>
@@ -13,7 +13,6 @@
 
     <section class="section dashboard">
         <div class="row">
-
             <!-- Left side columns -->
             <div class="col-lg-12">
                 <div class="row">
@@ -44,7 +43,7 @@
                                         <td>{{ $sppd->nomor_sppd }}</td>
                                         <td>{{ $sppd->pegawai->nama_pegawai }}</td>
                                         <td>{{ $sppd->maksud_perjalanan }}</td>
-                                        <td><span class="badge bg-{{ ($sppd->status == 'terima' ? 'primary' : ($sppd->status == 'tolak' ? 'danger' : ($sppd->status == 'mengajukan' ? 'warning' : ''))) }}">{{ $sppd->status }}</span></td>
+                                        <td><span class="badge bg-{{ ($sppd->status == 'terima' ? 'success' : ($sppd->status == 'tolak' ? 'danger' : ($sppd->status == 'mengajukan' ? 'warning' : ($sppd->status == 'selesai' ? 'success' : ($sppd->status == 'Terverifikasi' ? 'primary': ''))))) }}">{{ $sppd->status }}</span></td>
                                         <td>{{ $sppd->created_at }}</td>
                                         <td class="text-center">
                                             <form onsubmit="return confirm('Apakah Anda Yakin ?');" action="{{ route('staff.sppd.destroy', $sppd->id) }}" method="POST">
@@ -59,7 +58,7 @@
                                     </tr>
                                 @empty
                                     <div class="alert alert-danger">
-                                        Data Pegawai belum Tersedia.
+                                        Belum ada Data Pengajuan SPPD
                                     </div>
                                 @endforelse
                                 </tbody>

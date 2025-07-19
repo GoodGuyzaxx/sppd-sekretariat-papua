@@ -7,8 +7,8 @@
         @page {
             /* Ukuran F4 atau Folio */
             size: 21.5cm 33cm;
-            /* Margin standar untuk dokumen resmi, disesuaikan agar muat 1 halaman */
-            margin: 1.5cm 1.5cm; /* Mengurangi margin */
+            /* Margin standar untuk dokumen resmi */
+            margin: 2.5cm 2cm;
         }
         body {
             font-family: 'Times New Roman', Times, serif;
@@ -19,7 +19,7 @@
 
         /* Page break untuk halaman kedua dan ketiga */
         .page-break {
-            page-break-before: avoid; /* Mengubah ini agar tidak selalu break */
+            page-break-before: always;
         }
 
         /* Styling untuk halaman 2 */
@@ -146,11 +146,6 @@
             font-weight: bold;
             text-decoration: underline;
         }
-
-        /* Menyesuaikan ukuran font untuk halaman 1 agar lebih ringkas */
-        .sppd-table-font {
-            font-size: 10pt; /* Mengurangi ukuran font untuk tabel SPPD */
-        }
     </style>
 </head>
 <body>
@@ -191,7 +186,7 @@
 </h3>
 
 {{-- ================= TABEL UTAMA ================= --}}
-<table style="width: 100%; border-collapse: collapse;" class="sppd-table-font">
+<table style="width: 100%; border-collapse: collapse;">
     <tbody>
     <tr style="border: 1px solid black;">
         <td style="width: 40%; border: 1px solid black; padding: 8px; vertical-align: top;">1. Pejabat berwenang yang memberi perintah</td>
@@ -295,7 +290,7 @@
 </div>
 
 {{-- ================= HALAMAN 2 - FORM PERJALANAN DINAS ================= --}}
-<div class="page-2" style="margin-top: 20px;"> <!-- Menghapus page-break dan menambahkan margin-top -->
+<div class="page-break page-2">
     <!-- Form Table -->
     <table class="form-table">
         <!-- Row 1 -->
@@ -451,7 +446,7 @@
 </div>
 
 {{-- ================= HALAMAN 3 - RINCIAN BIAYA ================= --}}
-<div class="page-3" style="margin-top: 20px;"> <!-- Menghapus page-break dan menambahkan margin-top -->
+<div class="page-break page-3">
     <div class="container">
         {{-- Bagian Header --}}
         <div class="header">

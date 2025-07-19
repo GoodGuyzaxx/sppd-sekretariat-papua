@@ -21,7 +21,7 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link  {{ Request::is('pengeluaran*') ? 'active' : 'collapsed' }}" href="#">
+            <a class="nav-link  {{ Request::is('pengeluaran*') ? 'active' : 'collapsed' }}" href="{{route('staff.laporan.index')}}">
                 <i class="bi bi-journal"></i>
                 <span>Data Pengajuan SPT / SPPD </span>
             </a>

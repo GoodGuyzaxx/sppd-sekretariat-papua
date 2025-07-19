@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\KasubagController;
+use App\Http\Controllers\LaporanController;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\RedirectController;
 use App\Http\Controllers\RincianController;
@@ -86,4 +87,7 @@ Route::middleware(['auth', 'checkrole:4'])->group(function () {
     Route::delete('staff/pengeluaran/delete/{id}', [RincianController::class, 'destroy'])->name('staff.rincian.destroy');
     Route::get('staff/pengeluaran/detail{id}', [RincianController::class, 'show'])->name("staff.rincian.show");
     Route::get('staff/pengeluaran/pdf/{id}', [RincianController::class, 'getPdf'])->name('staff.rincian.pdf');
+
+    Route::get('staff/laporan',[LaporanController::class, 'index'])->name('staff.laporan.index');
+    Route::get('staff/laporan/pdf/{id}',[LaporanController::class, 'getPdf'])->name('staff.laporan.pdf');
 });
